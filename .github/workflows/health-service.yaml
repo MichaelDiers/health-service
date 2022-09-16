@@ -4,7 +4,7 @@ on:
 jobs:
   main:
     runs-on: ubuntu-latest
-    permissions: read-all|write-all
+    permissions: write-all
     env:
       gcloud_workload_identity_provider: ${{ secrets.gcloud_workload_identity_provider }}
       gcloud_deployment_service_account: ${{ secrets.gcloud_deployment_service_account }}      
