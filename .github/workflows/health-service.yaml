@@ -33,4 +33,4 @@ jobs:
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v0'
       - name: 'Use gcloud CLI'
-        run: 'gcloud run deploy ${{ env.service_name }} --source ${{ env.source }} --allow-unauthenticated --description="${{ env.description }}" --region=us-central1 --port=${{ env.port }} --service-account=${{ secrets.gcloud_runner_service_account }}'
+        run: 'gcloud run deploy "${{ env.service_name }}" --source ${{ env.source }} --allow-unauthenticated --description="${{ env.description }}" --region=us-central1 --port=${{ env.port }} --service-account=${{ secrets.gcloud_runner_service_account }}'
