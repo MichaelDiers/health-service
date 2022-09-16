@@ -5,13 +5,8 @@ import InjectionName from '../types/injection-name.enum';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  exports: [
-    InjectionName.HTTP_CHECKS,
-    InjectionName.PORT,
-  ],
-  imports: [
-    ConfigModule.forRoot(),
-  ],
+  exports: [InjectionName.HTTP_CHECKS, InjectionName.PORT],
+  imports: [ConfigModule.forRoot()],
   providers: [
     {
       provide: InjectionName.HTTP_CHECKS,
