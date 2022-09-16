@@ -7,6 +7,7 @@ import { ConfigModule } from '@nestjs/config';
 @Module({
   exports: [
     InjectionName.HTTP_CHECKS,
+    InjectionName.PORT,
   ],
   imports: [
     ConfigModule.forRoot(),
@@ -17,6 +18,14 @@ import { ConfigModule } from '@nestjs/config';
       useFactory: (configService: ConfigService): IHttpCheck[] => {
         const checks = configService.getOrThrow('HEALTH_SERVICE_HTTP_LINKS');
         return JSON.parse(checks);
+      },
+      inject: [ConfigService],
+    },
+    {
+      provide: InjectionName.PORT,
+      useFactory: (configService: ConfigService): number => {
+        const port = configService.getOrThrow('HEALTH_SERVICE_PORT');
+        return parseInt(port);
       },
       inject: [ConfigService],
     },
