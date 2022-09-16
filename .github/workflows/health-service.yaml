@@ -11,7 +11,7 @@ jobs:
       gcloud_workload_identity_provider: ${{ secrets.gcloud_workload_identity_provider }}
       gcloud_deployment_service_account: ${{ secrets.gcloud_deployment_service_account }}      
       gcloud_runner_service_account: ${{ secrets.gcloud_runner_service_account }}
-      service_name: 'Health Service'
+      service_name: 'health-service'
       source: health-service
       description: service for heath checks
       port: 3000
