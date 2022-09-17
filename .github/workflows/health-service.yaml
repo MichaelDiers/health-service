@@ -14,6 +14,8 @@ jobs:
       description: service for heath checks
       port: 3000
       docs: 'Health Service Documentation'
+      HEALTH_SERVICE_USERS_GRPC_SERVICE: ${{ secrets.HEALTH_SERVICE_USERS_GRPC_SERVICE }}
+      HEALTH_SERVICE_USERS_GRPC_SERVICE_API_KEY: ${{ secrets.HEALTH_SERVICE_USERS_GRPC_SERVICE_API_KEY }}
     steps:
       - uses: actions/checkout@v3
       - run: |
@@ -27,8 +29,12 @@ jobs:
           git add docs
           git commit -m "generated docs"
           git push
-      - name: update Dockerfile ENV
+      - name: update Dockerfile ENV HEALTH_SERVICE_PORT
         run: sed -i '/ENV HEALTH_SERVICE_PORT=/s/\([0-9]\+\)/${{ env.port }}/' health-service/Dockerfile
+      - name: update Dockerfile ENV HEALTH_SERVICE_USERS_GRPC_SERVICE
+        run: sed -i '/ENV HEALTH_SERVICE_USERS_GRPC_SERVICE=/s/VALUE/${{ env.HEALTH_SERVICE_USERS_GRPC_SERVICE }}/' health-service/Dockerfile
+      - name: update Dockerfile HEALTH_SERVICE_USERS_GRPC_SERVICE_API_KEY
+        run: sed -i '/ENV HEALTH_SERVICE_USERS_GRPC_SERVICE_API_KEY=/s/VALUE/${{ env.HEALTH_SERVICE_USERS_GRPC_SERVICE_API_KEY }}/' health-service/Dockerfile
       - name: update Dockerfile EXPOSE
         run: sed -i '/EXPOSE /s/\([0-9]\+\)/${{ env.port }}/' health-service/Dockerfile
       - id: 'auth'

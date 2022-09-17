@@ -5,6 +5,7 @@ import {
   HealthCheckService,
   HttpHealthIndicator,
 } from '@nestjs/terminus';
+import { UsersGrpcHealthIndicator } from '../health-users-grpc/users-grpc-health-indicator';
 import IHttpCheck from '../types/http-check.interface';
 import InjectionName from '../types/injection-name.enum';
 
@@ -18,12 +19,14 @@ export class HealthController {
    * @param healthCheckService Service for checking the health of system components.
    * @param httpHealthIndicator Check the health of http services.
    * @param httpChecks A array of http addresses to be checked.
+   * @param healthUsersGrpc A custom health check for grpc users service.
    */
   constructor(
     private readonly healthCheckService: HealthCheckService,
     private readonly httpHealthIndicator: HttpHealthIndicator,
     @Inject(InjectionName.HTTP_CHECKS)
     private readonly httpChecks: IHttpCheck[],
+    private readonly healthUsersGrpc: UsersGrpcHealthIndicator,
   ) {}
 
   /**
@@ -34,6 +37,7 @@ export class HealthController {
   @HealthCheck()
   async health(): Promise<HealthCheckResult> {
     return this.healthCheckService.check([
+      async () => this.healthUsersGrpc.isHealthy('Users Service Grpc'),
       ...this.httpChecks.map(
         ({ link, name }) =>
           async () =>
