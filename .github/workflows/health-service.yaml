@@ -25,17 +25,6 @@ jobs:
       SOURCE: ${{ secrets.SOURCE }}      
     steps:
       - uses: actions/checkout@v3
-      - run: |
-          cd health-service
-          npm install
-          npm install @compodoc/compodoc
-          npx @compodoc/compodoc -p tsconfig.json -n "${{ env.DOCS }} (v${{ github.run_number }})" -d ../docs
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          cd ..          
-          git add docs
-          git commit -m "generated docs"
-          git push
       - name: update Dockerfile for HEALTH_SERVICE_ACCESS_CONTROL_ALLOW_ORIGIN
         run: echo "ENV HEALTH_SERVICE_ACCESS_CONTROL_ALLOW_ORIGIN=${{ env.HEALTH_SERVICE_ACCESS_CONTROL_ALLOW_ORIGIN }}" >> ${{ env.SOURCE }}/Dockerfile
       - name: update Dockerfile for HEALTH_SERVICE_API_KEY_HEADER_NAME
@@ -64,3 +53,14 @@ jobs:
         uses: 'google-github-actions/setup-gcloud@v0'
       - name: 'Use gcloud CLI'
         run: 'gcloud run deploy "${{ env.SERVICE_NAME }}" --source ${{ env.SOURCE }} --allow-unauthenticated --description="${{ env.DESCRIPTION }}" --region=us-central1 --port=${{ env.HEALTH_SERVICE_PORT }} --service-account=${{ secrets.GCLOUD_RUNNER_SERVICE_ACCOUNT }}'
+      - name: install gh-pages and compodoc
+        run: npm install gh-pages @compodoc/compodoc --prefix ${{ env.SOURCE }}
+      - name: create docs
+        run: npx @compodoc/compodoc -p tsconfig.json -n "${{ env.DOCS }} (v${{ github.run_number }})" -d ../docs
+        working-directory: ${{ env.SOURCE }}
+      - name: Deploy with gh-pages
+        run: |
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          npx gh-pages -d docs -u "github-actions-bot <support+actions@github.com>"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
