@@ -38,7 +38,7 @@ jobs:
       - name: update Dockerfile for HEALTH_SERVICE_API_KEY_HEADER_NAME
         run: echo "ENV HEALTH_SERVICE_API_KEY_HEADER_NAME=${{ env.HEALTH_SERVICE_API_KEY_HEADER_NAME }}" >> ${{ env.SOURCE }}/Dockerfile
       - name: update Dockerfile for HEALTH_SERVICE_HTTP_CHECKS
-        run: echo "ENV HEALTH_SERVICE_HTTP_CHECKS=${{ env.HEALTH_SERVICE_HTTP_CHECKS }}" >> ${{ env.SOURCE }}/Dockerfile
+        run: echo "ENV HEALTH_SERVICE_HTTP_CHECKS=\"${{ env.HEALTH_SERVICE_HTTP_CHECKS }}\"" >> ${{ env.SOURCE }}/Dockerfile
       - name: update Dockerfile for HEALTH_SERVICE_PORT
         run: echo "ENV HEALTH_SERVICE_PORT=${{ env.HEALTH_SERVICE_PORT }}" >> ${{ env.SOURCE }}/Dockerfile
       - name: update Dockerfile for HEALTH_SERVICE_USERS_GRPC_SERVICE_API_KEY
