@@ -60,18 +60,35 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/HealthModule.html" data-type="entity-link" >HealthModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#controllers-links-module-HealthModule-2cd1f92a5cd4e535e585557fc6279a65fbc5ba79ad720eb31f888f58643d5b595308908d6ed846f0f3874400dd4ba0627c14bdf68563f4bf8238a31c677f0438"' : 'data-target="#xs-controllers-links-module-HealthModule-2cd1f92a5cd4e535e585557fc6279a65fbc5ba79ad720eb31f888f58643d5b595308908d6ed846f0f3874400dd4ba0627c14bdf68563f4bf8238a31c677f0438"' }>
+                                            'data-target="#controllers-links-module-HealthModule-9d229520fd0e811af58f13036deaeeba669d226b3bd1198bd1e2498cf0f27307f9e7f40bdf21f4d039cbc1d92adf465f5efeab8a6ea3b16121e65d6a77dbeabf"' : 'data-target="#xs-controllers-links-module-HealthModule-9d229520fd0e811af58f13036deaeeba669d226b3bd1198bd1e2498cf0f27307f9e7f40bdf21f4d039cbc1d92adf465f5efeab8a6ea3b16121e65d6a77dbeabf"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-HealthModule-2cd1f92a5cd4e535e585557fc6279a65fbc5ba79ad720eb31f888f58643d5b595308908d6ed846f0f3874400dd4ba0627c14bdf68563f4bf8238a31c677f0438"' :
-                                            'id="xs-controllers-links-module-HealthModule-2cd1f92a5cd4e535e585557fc6279a65fbc5ba79ad720eb31f888f58643d5b595308908d6ed846f0f3874400dd4ba0627c14bdf68563f4bf8238a31c677f0438"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-HealthModule-9d229520fd0e811af58f13036deaeeba669d226b3bd1198bd1e2498cf0f27307f9e7f40bdf21f4d039cbc1d92adf465f5efeab8a6ea3b16121e65d6a77dbeabf"' :
+                                            'id="xs-controllers-links-module-HealthModule-9d229520fd0e811af58f13036deaeeba669d226b3bd1198bd1e2498cf0f27307f9e7f40bdf21f4d039cbc1d92adf465f5efeab8a6ea3b16121e65d6a77dbeabf"' }>
                                             <li class="link">
                                                 <a href="controllers/HealthController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >HealthController</a>
                                             </li>
                                         </ul>
                                     </li>
+                            </li>
+                            <li class="link">
+                                <a href="modules/HealthUsersGrpcModule.html" data-type="entity-link" >HealthUsersGrpcModule</a>
+                                <li class="chapter inner">
+                                    <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
+                                        'data-target="#injectables-links-module-HealthUsersGrpcModule-f049dcfde2d2b0d267be059f06bbe113af0ddd63ab2bcf61c318eba3bce14cde332ed0c725b87b309811a601a1ede544016ebdaffaeb193972e57ba7f13fdae8"' : 'data-target="#xs-injectables-links-module-HealthUsersGrpcModule-f049dcfde2d2b0d267be059f06bbe113af0ddd63ab2bcf61c318eba3bce14cde332ed0c725b87b309811a601a1ede544016ebdaffaeb193972e57ba7f13fdae8"' }>
+                                        <span class="icon ion-md-arrow-round-down"></span>
+                                        <span>Injectables</span>
+                                        <span class="icon ion-ios-arrow-down"></span>
+                                    </div>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-HealthUsersGrpcModule-f049dcfde2d2b0d267be059f06bbe113af0ddd63ab2bcf61c318eba3bce14cde332ed0c725b87b309811a601a1ede544016ebdaffaeb193972e57ba7f13fdae8"' :
+                                        'id="xs-injectables-links-module-HealthUsersGrpcModule-f049dcfde2d2b0d267be059f06bbe113af0ddd63ab2bcf61c318eba3bce14cde332ed0c725b87b309811a601a1ede544016ebdaffaeb193972e57ba7f13fdae8"' }>
+                                        <li class="link">
+                                            <a href="injectables/UsersGrpcHealthIndicator.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >UsersGrpcHealthIndicator</a>
+                                        </li>
+                                    </ul>
+                                </li>
                             </li>
                 </ul>
                 </li>
@@ -83,6 +100,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <span class="icon ion-ios-arrow-down"></span>
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
+                            <li class="link">
+                                <a href="interfaces/IGrpcUsersService.html" data-type="entity-link" >IGrpcUsersService</a>
+                            </li>
                             <li class="link">
                                 <a href="interfaces/IHttpCheck.html" data-type="entity-link" >IHttpCheck</a>
                             </li>
