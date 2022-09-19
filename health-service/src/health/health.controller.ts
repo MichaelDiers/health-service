@@ -13,7 +13,7 @@ import InjectionName from '../types/injection-name.enum';
 /**
  * Controller that provides a route for health checks.
  */
-@Controller('health')
+@Controller()
 @UseInterceptors(AccessControlAllowOriginInterceptor)
 export class HealthController {
   /**
