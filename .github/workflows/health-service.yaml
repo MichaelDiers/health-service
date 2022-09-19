@@ -2,50 +2,62 @@ name: Health Service
 on:
   workflow_dispatch:
 jobs:
-  main:
+  production:
     runs-on: ubuntu-latest
     permissions: write-all
+    environment: production
     env:
-      gcloud_workload_identity_provider: ${{ secrets.gcloud_workload_identity_provider }}
-      gcloud_deployment_service_account: ${{ secrets.gcloud_deployment_service_account }}      
-      gcloud_runner_service_account: ${{ secrets.gcloud_runner_service_account }}
-      service_name: 'health-service'
-      source: health-service
-      description: service for heath checks
-      port: 3000
-      docs: 'Health Service Documentation'
-      HEALTH_SERVICE_USERS_GRPC_SERVICE: ${{ secrets.HEALTH_SERVICE_USERS_GRPC_SERVICE }}
+      DESCRIPTION: ${{ secrets.DESCRIPTION }}
+      DOCS: ${{ secrets.DOCS }}
+      GCLOUD_DEPLOYMENT_SERVICE_ACCOUNT: ${{ secrets.GCLOUD_DEPLOYMENT_SERVICE_ACCOUNT }}
+      GCLOUD_RUNNER_SERVICE_ACCOUNT: ${{ secrets.GCLOUD_RUNNER_SERVICE_ACCOUNT }}
+      GCLOUD_WORKLOAD_IDENTITY_PROVIDER: ${{ secrets.GCLOUD_WORKLOAD_IDENTITY_PROVIDER }}
+      HEALTH_SERVICE_ACCESS_CONTROL_ALLOW_ORIGIN: ${{ secrets.HEALTH_SERVICE_ACCESS_CONTROL_ALLOW_ORIGIN }}
+      HEALTH_SERVICE_API_KEY_HEADER_NAME: ${{ secrets.HEALTH_SERVICE_API_KEY_HEADER_NAME }}
+      HEALTH_SERVICE_HTTP_CHECKS: ${{ secrets.HEALTH_SERVICE_HTTP_CHECKS }}
+      HEALTH_SERVICE_PORT: ${{ secrets.HEALTH_SERVICE_PORT }}
       HEALTH_SERVICE_USERS_GRPC_SERVICE_API_KEY: ${{ secrets.HEALTH_SERVICE_USERS_GRPC_SERVICE_API_KEY }}
+      HEALTH_SERVICE_USERS_GRPC_SERVICE_URL: ${{ secrets.HEALTH_SERVICE_USERS_GRPC_SERVICE_URL }}
+      SERVICE_NAME: ${{ secrets.SERVICE_NAME }}
+      SOURCE: ${{ secrets.SOURCE }}      
     steps:
       - uses: actions/checkout@v3
       - run: |
           cd health-service
           npm install
           npm install @compodoc/compodoc
-          npx @compodoc/compodoc -p tsconfig.json -n "${{ env.docs }}" -d ../docs
+          npx @compodoc/compodoc -p tsconfig.json -n "${{ env.DOCS }}" -d ../docs
           git config user.name github-actions
           git config user.email github-actions@github.com
           cd ..          
           git add docs
           git commit -m "generated docs"
           git push
-      - name: update Dockerfile ENV HEALTH_SERVICE_PORT
-        run: sed -i '/ENV HEALTH_SERVICE_PORT=/s/\([0-9]\+\)/${{ env.port }}/' health-service/Dockerfile
-      - name: update Dockerfile ENV HEALTH_SERVICE_USERS_GRPC_SERVICE
-        run: sed -i '/ENV HEALTH_SERVICE_USERS_GRPC_SERVICE=/s/VALUE/${{ env.HEALTH_SERVICE_USERS_GRPC_SERVICE }}/' health-service/Dockerfile
-      - name: update Dockerfile HEALTH_SERVICE_USERS_GRPC_SERVICE_API_KEY
-        run: sed -i '/ENV HEALTH_SERVICE_USERS_GRPC_SERVICE_API_KEY=/s/VALUE/${{ env.HEALTH_SERVICE_USERS_GRPC_SERVICE_API_KEY }}/' health-service/Dockerfile
-      - name: update Dockerfile EXPOSE
-        run: sed -i '/EXPOSE /s/\([0-9]\+\)/${{ env.port }}/' health-service/Dockerfile
+      - name: update Dockerfile for HEALTH_SERVICE_ACCESS_CONTROL_ALLOW_ORIGIN
+        run: echo "ENV HEALTH_SERVICE_ACCESS_CONTROL_ALLOW_ORIGIN=${{ env.HEALTH_SERVICE_ACCESS_CONTROL_ALLOW_ORIGIN }}" >> ${{ env.SOURCE }}/Dockerfile
+      - name: update Dockerfile for HEALTH_SERVICE_API_KEY_HEADER_NAME
+        run: echo "ENV HEALTH_SERVICE_API_KEY_HEADER_NAME=${{ env.HEALTH_SERVICE_API_KEY_HEADER_NAME }}" >> ${{ env.SOURCE }}/Dockerfile
+      - name: update Dockerfile for HEALTH_SERVICE_HTTP_CHECKS
+        run: echo "ENV HEALTH_SERVICE_HTTP_CHECKS=${{ env.HEALTH_SERVICE_HTTP_CHECKS }}" >> ${{ env.SOURCE }}/Dockerfile
+      - name: update Dockerfile for HEALTH_SERVICE_PORT
+        run: echo "ENV HEALTH_SERVICE_PORT=${{ env.HEALTH_SERVICE_PORT }}" >> ${{ env.SOURCE }}/Dockerfile
+      - name: update Dockerfile for HEALTH_SERVICE_USERS_GRPC_SERVICE_API_KEY
+        run: echo "ENV HEALTH_SERVICE_USERS_GRPC_SERVICE_API_KEY=${{ env.HEALTH_SERVICE_USERS_GRPC_SERVICE_API_KEY }}" >> ${{ env.SOURCE }}/Dockerfile
+      - name: update Dockerfile for HEALTH_SERVICE_USERS_GRPC_SERVICE_URL
+        run: echo "ENV HEALTH_SERVICE_USERS_GRPC_SERVICE_URL=${{ env.HEALTH_SERVICE_USERS_GRPC_SERVICE_URL }}" >> ${{ env.SOURCE }}/Dockerfile
+      - name: add EXPOSE to dockerfile
+        run: echo "EXPOSE ${{ env.HEALTH_SERVICE_PORT }}" >> ${{ env.SOURCE }}/Dockerfile      
+      - name: add RUN to dockerfile
+        run: echo "CMD [\"node\", \"dist/main\"]" >> ${{ env.SOURCE }}/Dockerfile
       - id: 'auth'
         name: 'Authenticate to Google Cloud'
         uses: 'google-github-actions/auth@v0'
         with:
           token_format: 'id_token'
-          workload_identity_provider: '${{ env.gcloud_workload_identity_provider }}'
-          service_account: '${{ env.gcloud_deployment_service_account }}'
-          id_token_audience: '${{ env.gcloud_workload_identity_provider }}'
+          workload_identity_provider: '${{ env.GCLOUD_WORKLOAD_IDENTITY_PROVIDER }}'
+          service_account: '${{ env.GCLOUD_DEPLOYMENT_SERVICE_ACCOUNT }}'
+          id_token_audience: '${{ env.GCLOUD_WORKLOAD_IDENTITY_PROVIDER }}'
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v0'
       - name: 'Use gcloud CLI'
-        run: 'gcloud run deploy "${{ env.service_name }}" --source ${{ env.source }} --allow-unauthenticated --description="${{ env.description }}" --region=us-central1 --port=${{ env.port }} --service-account=${{ secrets.gcloud_runner_service_account }}'
+        run: 'gcloud run deploy "${{ env.SERVICE_NAME }}" --source ${{ env.SOURCE }} --allow-unauthenticated --description="${{ env.DESCRIPTION }}" --region=us-central1 --port=${{ env.HEALTH_SERVICE_PORT }} --service-account=${{ secrets.GCLOUD_RUNNER_SERVICE_ACCOUNT }}'
