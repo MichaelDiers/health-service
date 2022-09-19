@@ -1,4 +1,4 @@
-import { Controller, Get, Inject } from '@nestjs/common';
+import { Controller, Get, Inject, UseInterceptors } from '@nestjs/common';
 import {
   HealthCheck,
   HealthCheckResult,
@@ -6,6 +6,7 @@ import {
   HttpHealthIndicator,
 } from '@nestjs/terminus';
 import { UsersGrpcHealthIndicator } from '../health-users-grpc/users-grpc-health-indicator';
+import { AccessControlAllowOriginInterceptor } from '../interceptors/access-control-allow-origin.interceptor';
 import IHttpCheck from '../types/http-check.interface';
 import InjectionName from '../types/injection-name.enum';
 
@@ -13,6 +14,7 @@ import InjectionName from '../types/injection-name.enum';
  * Controller that provides a route for health checks.
  */
 @Controller('health')
+@UseInterceptors(AccessControlAllowOriginInterceptor)
 export class HealthController {
   /**
    * Creates a new instance of HealthController.

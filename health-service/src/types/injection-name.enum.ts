@@ -3,6 +3,11 @@
  */
 const enum InjectionName {
   /**
+   * The injection name for the Access-Control-Allow-Origin response header.
+   */
+  ACCESS_CONTROL_ALLOW_ORIGIN = 'ACCESS_CONTROL_ALLOW_ORIGIN',
+
+  /**
    * The name of the api key that is sent in headers or metadata.
    */
   API_KEY_HEADER_NAME = 'API_KEY_HEADER_NAME',
