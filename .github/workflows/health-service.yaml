@@ -12,6 +12,7 @@ jobs:
     env:
       DESCRIPTION: ${{ secrets.DESCRIPTION }}
       DOCS: ${{ secrets.DOCS }}
+      DOCS_DIR: docs
       GCLOUD_DEPLOYMENT_SERVICE_ACCOUNT: ${{ secrets.GCLOUD_DEPLOYMENT_SERVICE_ACCOUNT }}
       GCLOUD_RUNNER_SERVICE_ACCOUNT: ${{ secrets.GCLOUD_RUNNER_SERVICE_ACCOUNT }}
       GCLOUD_WORKLOAD_IDENTITY_PROVIDER: ${{ secrets.GCLOUD_WORKLOAD_IDENTITY_PROVIDER }}
@@ -56,11 +57,12 @@ jobs:
       - name: install gh-pages and compodoc
         run: npm install gh-pages @compodoc/compodoc --prefix ${{ env.SOURCE }}
       - name: create docs
-        run: npx @compodoc/compodoc -p tsconfig.json -n "${{ env.DOCS }} (v${{ github.run_number }})" -d ../docs
+        run: npx @compodoc/compodoc -p tsconfig.json -n "${{ env.DOCS }} (v${{ github.run_number }})" -d ${{ env.DOCS_DIR }}
         working-directory: ${{ env.SOURCE }}
       - name: Deploy with gh-pages
         run: |
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-          npx gh-pages -d docs -u "github-actions-bot <support+actions@github.com>"
+          npx gh-pages -d ${{ env.DOCS_DIR }} -u "github-actions-bot <support+actions@github.com>"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        working-directory: ${{ env.SOURCE }}
