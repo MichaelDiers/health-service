@@ -26,7 +26,7 @@ jobs:
           cd health-service
           npm install
           npm install @compodoc/compodoc
-          npx @compodoc/compodoc -p tsconfig.json -n "${{ env.DOCS }}" -d ../docs
+          npx @compodoc/compodoc -p tsconfig.json -n "${{ env.DOCS }} (v${{ github.run_number }})" -d ../docs
           git config user.name github-actions
           git config user.email github-actions@github.com
           cd ..          
