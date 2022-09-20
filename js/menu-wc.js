@@ -15,7 +15,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
         <nav>
             <ul class="list">
                 <li class="title">
-                    <a href="index.html" data-type="index-link"> (v21)</a>
+                    <a href="index.html" data-type="index-link"> (v22)</a>
                 </li>
 
                 <li class="divider"></li>
@@ -60,13 +60,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/HealthModule.html" data-type="entity-link" >HealthModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#controllers-links-module-HealthModule-9d229520fd0e811af58f13036deaeeba669d226b3bd1198bd1e2498cf0f27307f9e7f40bdf21f4d039cbc1d92adf465f5efeab8a6ea3b16121e65d6a77dbeabf"' : 'data-target="#xs-controllers-links-module-HealthModule-9d229520fd0e811af58f13036deaeeba669d226b3bd1198bd1e2498cf0f27307f9e7f40bdf21f4d039cbc1d92adf465f5efeab8a6ea3b16121e65d6a77dbeabf"' }>
+                                            'data-target="#controllers-links-module-HealthModule-f1d871310b4dcb53ae62ed94e4f5620a09f2ebac3f1c3b3dda2defd696805a6b591de2d18c0d9385f147366187c785f44d114c6272c931b6cb37696a0312cf13"' : 'data-target="#xs-controllers-links-module-HealthModule-f1d871310b4dcb53ae62ed94e4f5620a09f2ebac3f1c3b3dda2defd696805a6b591de2d18c0d9385f147366187c785f44d114c6272c931b6cb37696a0312cf13"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-HealthModule-9d229520fd0e811af58f13036deaeeba669d226b3bd1198bd1e2498cf0f27307f9e7f40bdf21f4d039cbc1d92adf465f5efeab8a6ea3b16121e65d6a77dbeabf"' :
-                                            'id="xs-controllers-links-module-HealthModule-9d229520fd0e811af58f13036deaeeba669d226b3bd1198bd1e2498cf0f27307f9e7f40bdf21f4d039cbc1d92adf465f5efeab8a6ea3b16121e65d6a77dbeabf"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-HealthModule-f1d871310b4dcb53ae62ed94e4f5620a09f2ebac3f1c3b3dda2defd696805a6b591de2d18c0d9385f147366187c785f44d114c6272c931b6cb37696a0312cf13"' :
+                                            'id="xs-controllers-links-module-HealthModule-f1d871310b4dcb53ae62ed94e4f5620a09f2ebac3f1c3b3dda2defd696805a6b591de2d18c0d9385f147366187c785f44d114c6272c931b6cb37696a0312cf13"' }>
                                             <li class="link">
                                                 <a href="controllers/HealthController.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >HealthController</a>
                                             </li>
@@ -86,6 +86,23 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         'id="xs-injectables-links-module-HealthUsersGrpcModule-f049dcfde2d2b0d267be059f06bbe113af0ddd63ab2bcf61c318eba3bce14cde332ed0c725b87b309811a601a1ede544016ebdaffaeb193972e57ba7f13fdae8"' }>
                                         <li class="link">
                                             <a href="injectables/UsersGrpcHealthIndicator.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >UsersGrpcHealthIndicator</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </li>
+                            <li class="link">
+                                <a href="modules/HealthUsersRestModule.html" data-type="entity-link" >HealthUsersRestModule</a>
+                                <li class="chapter inner">
+                                    <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
+                                        'data-target="#injectables-links-module-HealthUsersRestModule-28ec45c0e946fd9203e4854bbf133f55ac5ad74cecb326fe3ee490691aebb042d342d80c32d963b5c61da38f47fc9be408f1624a3f66b32f584bab403715ac82"' : 'data-target="#xs-injectables-links-module-HealthUsersRestModule-28ec45c0e946fd9203e4854bbf133f55ac5ad74cecb326fe3ee490691aebb042d342d80c32d963b5c61da38f47fc9be408f1624a3f66b32f584bab403715ac82"' }>
+                                        <span class="icon ion-md-arrow-round-down"></span>
+                                        <span>Injectables</span>
+                                        <span class="icon ion-ios-arrow-down"></span>
+                                    </div>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-HealthUsersRestModule-28ec45c0e946fd9203e4854bbf133f55ac5ad74cecb326fe3ee490691aebb042d342d80c32d963b5c61da38f47fc9be408f1624a3f66b32f584bab403715ac82"' :
+                                        'id="xs-injectables-links-module-HealthUsersRestModule-28ec45c0e946fd9203e4854bbf133f55ac5ad74cecb326fe3ee490691aebb042d342d80c32d963b5c61da38f47fc9be408f1624a3f66b32f584bab403715ac82"' }>
+                                        <li class="link">
+                                            <a href="injectables/UsersRestHealthIndicator.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >UsersRestHealthIndicator</a>
                                         </li>
                                     </ul>
                                 </li>
