@@ -17,6 +17,8 @@ const ENV_PREFIX = 'HEALTH_SERVICE_';
     InjectionName.PORT,
     InjectionName.USERS_GRPC_SERVICE_URL,
     InjectionName.USERS_GRPC_SERVICE_API_KEY,
+    InjectionName.USERS_SERVICE_REST_API_KEY,
+    InjectionName.USERS_SERVICE_REST_URL,
   ],
   imports: [ConfigModule.forRoot()],
   providers: [
@@ -69,6 +71,22 @@ const ENV_PREFIX = 'HEALTH_SERVICE_';
       useFactory: (configService: ConfigService): string =>
         configService.getOrThrow(
           `${ENV_PREFIX}${InjectionName.USERS_GRPC_SERVICE_URL}`,
+        ),
+      inject: [ConfigService],
+    },
+    {
+      provide: InjectionName.USERS_SERVICE_REST_API_KEY,
+      useFactory: (configService: ConfigService): string =>
+        configService.getOrThrow(
+          `${ENV_PREFIX}${InjectionName.USERS_SERVICE_REST_API_KEY}`,
+        ),
+      inject: [ConfigService],
+    },
+    {
+      provide: InjectionName.USERS_SERVICE_REST_URL,
+      useFactory: (configService: ConfigService): string =>
+        configService.getOrThrow(
+          `${ENV_PREFIX}${InjectionName.USERS_SERVICE_REST_URL}`,
         ),
       inject: [ConfigService],
     },

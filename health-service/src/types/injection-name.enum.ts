@@ -36,6 +36,16 @@ const enum InjectionName {
    * The url of the users grpc service.
    */
   USERS_GRPC_SERVICE_URL = 'USERS_GRPC_SERVICE_URL',
+
+  /**
+   * The api key of the users service using rest.
+   */
+  USERS_SERVICE_REST_API_KEY = 'USERS_SERVICE_REST_API_KEY',
+
+  /**
+   * The url of the users service using rest.
+   */
+  USERS_SERVICE_REST_URL = 'USERS_SERVICE_REST_URL',
 }
 
 export default InjectionName;

@@ -38,6 +38,10 @@ jobs:
         run: echo "ENV HEALTH_SERVICE_USERS_GRPC_SERVICE_API_KEY=${{ env.HEALTH_SERVICE_USERS_GRPC_SERVICE_API_KEY }}" >> ${{ env.SOURCE }}/Dockerfile
       - name: update Dockerfile for HEALTH_SERVICE_USERS_GRPC_SERVICE_URL
         run: echo "ENV HEALTH_SERVICE_USERS_GRPC_SERVICE_URL=${{ env.HEALTH_SERVICE_USERS_GRPC_SERVICE_URL }}" >> ${{ env.SOURCE }}/Dockerfile
+      - name: update Dockerfile for HEALTH_SERVICE_USERS_SERVICE_REST_URL
+        run: echo "ENV HEALTH_SERVICE_USERS_SERVICE_REST_URL=${{ env.HEALTH_SERVICE_USERS_SERVICE_REST_URL }}" >> ${{ env.SOURCE }}/Dockerfile
+      - name: update Dockerfile for HEALTH_SERVICE_USERS_SERVICE_REST_API_KEY
+        run: echo "ENV HEALTH_SERVICE_USERS_SERVICE_REST_API_KEY=${{ env.HEALTH_SERVICE_USERS_SERVICE_REST_API_KEY }}" >> ${{ env.SOURCE }}/Dockerfile
       - name: add EXPOSE to dockerfile
         run: echo "EXPOSE ${{ env.HEALTH_SERVICE_PORT }}" >> ${{ env.SOURCE }}/Dockerfile      
       - name: add RUN to dockerfile

@@ -6,6 +6,7 @@ import {
   HttpHealthIndicator,
 } from '@nestjs/terminus';
 import { UsersGrpcHealthIndicator } from '../health-users-grpc/users-grpc-health-indicator';
+import { UsersRestHealthIndicator } from '../health-users-rest/users-rest.health-indicator';
 import { AccessControlAllowOriginInterceptor } from '../interceptors/access-control-allow-origin.interceptor';
 import IHttpCheck from '../types/http-check.interface';
 import InjectionName from '../types/injection-name.enum';
@@ -29,6 +30,7 @@ export class HealthController {
     @Inject(InjectionName.HTTP_CHECKS)
     private readonly httpChecks: IHttpCheck[],
     private readonly healthUsersGrpc: UsersGrpcHealthIndicator,
+    private readonly healthUsersRest: UsersRestHealthIndicator,
   ) {}
 
   /**
@@ -39,7 +41,8 @@ export class HealthController {
   @HealthCheck()
   async health(): Promise<HealthCheckResult> {
     return this.healthCheckService.check([
-      async () => this.healthUsersGrpc.isHealthy('Users Service Grpc'),
+      () => this.healthUsersRest.isHealthy('Users Service REST'),
+      () => this.healthUsersGrpc.isHealthy('Users Service Grpc'),
       ...this.httpChecks.map(
         ({ link, name }) =>
           async () =>
