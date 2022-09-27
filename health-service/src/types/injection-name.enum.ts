@@ -8,6 +8,11 @@ const enum InjectionName {
   ACCESS_CONTROL_ALLOW_ORIGIN = 'ACCESS_CONTROL_ALLOW_ORIGIN',
 
   /**
+   * The api key for the health service.
+   */
+  API_KEY = 'API_KEY',
+
+  /**
    * The name of the api key that is sent in headers or metadata.
    */
   API_KEY_HEADER_NAME = 'API_KEY_HEADER_NAME',

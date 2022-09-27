@@ -1,10 +1,17 @@
-import { Controller, Get, Inject, UseInterceptors } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Inject,
+  UseGuards,
+  UseInterceptors,
+} from '@nestjs/common';
 import {
   HealthCheck,
   HealthCheckResult,
   HealthCheckService,
   HttpHealthIndicator,
 } from '@nestjs/terminus';
+import { ApiKeyGuard } from '../guards/api-key.guard';
 import { UsersGrpcHealthIndicator } from '../health-users-grpc/users-grpc-health-indicator';
 import { UsersRestHealthIndicator } from '../health-users-rest/users-rest.health-indicator';
 import { AccessControlAllowOriginInterceptor } from '../interceptors/access-control-allow-origin.interceptor';
@@ -15,6 +22,7 @@ import InjectionName from '../types/injection-name.enum';
  * Controller that provides a route for health checks.
  */
 @Controller()
+@UseGuards(ApiKeyGuard)
 @UseInterceptors(AccessControlAllowOriginInterceptor)
 export class HealthController {
   /**

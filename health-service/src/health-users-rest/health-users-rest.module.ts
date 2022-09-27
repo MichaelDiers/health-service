@@ -4,15 +4,8 @@ import { ConfigurationModule } from '../configuration/configuration.module';
 import { UsersRestHealthIndicator } from './users-rest.health-indicator';
 
 @Module({
-  exports: [
-    UsersRestHealthIndicator,
-  ],
-  imports: [
-    ConfigurationModule,
-    HttpModule,
-  ],
-  providers: [
-    UsersRestHealthIndicator,
-  ],
+  exports: [UsersRestHealthIndicator],
+  imports: [ConfigurationModule, HttpModule],
+  providers: [UsersRestHealthIndicator],
 })
 export class HealthUsersRestModule {}

@@ -12,6 +12,7 @@ const ENV_PREFIX = 'HEALTH_SERVICE_';
 @Module({
   exports: [
     InjectionName.ACCESS_CONTROL_ALLOW_ORIGIN,
+    InjectionName.API_KEY,
     InjectionName.API_KEY_HEADER_NAME,
     InjectionName.HTTP_CHECKS,
     InjectionName.PORT,
@@ -36,6 +37,12 @@ const ENV_PREFIX = 'HEALTH_SERVICE_';
         configService.getOrThrow(
           `${ENV_PREFIX}${InjectionName.API_KEY_HEADER_NAME}`,
         ),
+      inject: [ConfigService],
+    },
+    {
+      provide: InjectionName.API_KEY,
+      useFactory: (configService: ConfigService): string =>
+        configService.getOrThrow(`${ENV_PREFIX}${InjectionName.API_KEY}`),
       inject: [ConfigService],
     },
     {

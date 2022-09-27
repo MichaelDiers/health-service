@@ -14,7 +14,7 @@ import InjectionName from '../types/injection-name.enum';
 @Injectable()
 export class UsersRestHealthIndicator extends HealthIndicator {
   /**
-   * Creates a new instance of the UsersGrpcHealthIndicator.   
+   * Creates a new instance of the UsersGrpcHealthIndicator.
    * @param apiKey The api key for the users service using rest.
    * @param apiKeyName The header name of the api key.
    * @param url The url of the users service.
@@ -36,17 +36,27 @@ export class UsersRestHealthIndicator extends HealthIndicator {
    */
   async isHealthy(key: string): Promise<HealthIndicatorResult> {
     try {
-      const response = this.httpService.get(this.url, { headers: { [this.apiKeyName]: this.apiKey } });
-      const { status, info, error, details } = (await firstValueFrom(response)).data;
-      return this.getStatus(key, status.toLowerCase() === 'ok', { info, error, details });
+      const response = this.httpService.get(this.url, {
+        headers: { [this.apiKeyName]: this.apiKey },
+      });
+      const { status, info, error, details } = (await firstValueFrom(response))
+        .data;
+      return this.getStatus(key, status.toLowerCase() === 'ok', {
+        info,
+        error,
+        details,
+      });
     } catch (err) {
       if (err?.response?.data) {
-        const { status, info, error, details } = err.response.data;
+        const { info, error, details } = err.response.data;
         const result = this.getStatus(key, false, { info, error, details });
         throw new HealthCheckError('Custom health check failed', result);
       }
 
-      throw new HealthCheckError('Custom health check failed', this.getStatus(key, false, { error: err.message }));
+      throw new HealthCheckError(
+        'Custom health check failed',
+        this.getStatus(key, false, { error: err.message }),
+      );
     }
   }
 }
