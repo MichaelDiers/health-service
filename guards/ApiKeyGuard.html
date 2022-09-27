@@ -28,7 +28,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content injectable">
+               <div class="content guard">
                    <div class="content-data">
 
 
@@ -38,9 +38,11 @@
 
 
 
+
+
 <ol class="breadcrumb">
-  <li>Injectables</li>
-  <li >UsersRestHealthIndicator</li>
+    <li>Guards</li>
+    <li >ApiKeyGuard</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -53,32 +55,27 @@
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
-        <p class="comment">
+        <div class="tab-pane fade active in" id="c-info">
+            <p class="comment">
             <h3>File</h3>
-        </p>
-        <p class="comment">
-            <code>src/health-users-rest/users-rest.health-indicator.ts</code>
-        </p>
-
-
+            </p>
             <p class="comment">
+                <code>src/guards/api-key.guard.ts</code>
+            </p>
+
+
+                <p class="comment">
                 <h3>Description</h3>
-            </p>
-            <p class="comment">
-                <p>A custom health check for the users service using rest.</p>
+                </p>
+                <p class="comment">
+                    <p>Guard for validating api keys.</p>
 
-            </p>
-
-            <p class="comment">
-                <h3>Extends</h3>
-            </p>
-            <p class="comment">
-                    <code>HealthIndicator</code>
-            </p>
+                </p>
 
 
-            <section>
+
+
+                <section>
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -92,8 +89,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#isHealthy" >isHealthy</a>
+                                <a href="#canActivate" >canActivate</a>
                             </li>
                         </ul>
                     </td>
@@ -107,24 +103,24 @@
     </table>
 </section>
 
-            <section>
+                <section>
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(apiKey: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, apiKeyName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, url: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, httpService: HttpService)</code>
+<code>constructor(serviceApiKey: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, apiKeyHeaderName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/health-users-rest/users-rest.health-indicator.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/guards/api-key.guard.ts:14</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Creates a new instance of the UsersGrpcHealthIndicator.</p>
+                            <div class="io-description"><p>Create a new instance of ApiKeyGuard.</p>
 </div>
                             <div>
                                     <b>Parameters :</b>
@@ -134,12 +130,11 @@
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
-                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>apiKey</td>
+                                                        <td>serviceApiKey</td>
                                                   
                                                         <td>
                                                                         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
@@ -149,13 +144,9 @@
                                                             No
                                                     </td>
                                                     
-                                                        <td>
-                                                                <p>The api key for the users service using rest.</p>
-
-                                                        </td>
                                                 </tr>
                                                 <tr>
-                                                        <td>apiKeyName</td>
+                                                        <td>apiKeyHeaderName</td>
                                                   
                                                         <td>
                                                                         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
@@ -165,42 +156,6 @@
                                                             No
                                                     </td>
                                                     
-                                                        <td>
-                                                                <p>The header name of the api key.</p>
-
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>url</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <p>The url of the users service.</p>
-
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                        <td>httpService</td>
-                                                  
-                                                        <td>
-                                                                    <code>HttpService</code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <p>: Service for http requests.</p>
-
-                                                        </td>
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -211,7 +166,7 @@
         </table>
 </section>
 
-            <section>
+                <section>
     
     <h3 id="methods">
         Methods
@@ -220,33 +175,31 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="isHealthy"></a>
+                    <a name="canActivate"></a>
                     <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>isHealthy</b></span>
-                        <a href="#isHealthy"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>canActivate</b></span>
+                        <a href="#canActivate"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>isHealthy(key: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>canActivate(context: ExecutionContext)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="37"
-                            class="link-to-prism">src/health-users-rest/users-rest.health-indicator.ts:37</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">src/guards/api-key.guard.ts:30</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Execute a health check for the users service.</p>
+                    <div class="io-description"><p>Validate the provided api key of the request.</p>
 </div>
 
                     <div class="io-description">
@@ -263,9 +216,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>key</td>
+                                    <td>context</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            <code>ExecutionContext</code>
                                     </td>
 
                                     <td>
@@ -274,7 +227,7 @@
 
 
                                     <td>
-                                        <p>The key which will be used as key for the result object.</p>
+                                        <p>The current execution context.</p>
 
                                     </td>
                                 </tr>
@@ -284,11 +237,11 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;HealthIndicatorResult&gt;</code>
+                        <b>Returns : </b>    <code>boolean | Promise | Observable</code>
 
                     </div>
                     <div class="io-description">
-                        <p>A Promise<T> whose result is a HealthIndicatorResult.</p>
+                        <p>True if the api key is valid and false otherwise.</p>
 
                     </div>
                 </td>
@@ -296,79 +249,61 @@
         </tbody>
     </table>
 </section>
+        </div>
 
-    </div>
 
-
-    <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpService } from &#x27;@nestjs/axios&#x27;;
-import { Inject, Injectable } from &#x27;@nestjs/common&#x27;;
-import {
-  HealthCheckError,
-  HealthIndicator,
-  HealthIndicatorResult,
-} from &#x27;@nestjs/terminus&#x27;;
-import { firstValueFrom } from &#x27;rxjs&#x27;;
+        <div class="tab-pane fade  tab-source-code" id="c-source">
+            <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  CanActivate,
+  ExecutionContext,
+  Inject,
+  Injectable,
+} from &#x27;@nestjs/common&#x27;;
+import { Observable } from &#x27;rxjs&#x27;;
 import InjectionName from &#x27;../types/injection-name.enum&#x27;;
 
 /**
- * A custom health check for the users service using rest.
+ * Guard for validating api keys.
  */
 @Injectable()
-export class UsersRestHealthIndicator extends HealthIndicator {
+export class ApiKeyGuard implements CanActivate {
   /**
-   * Creates a new instance of the UsersGrpcHealthIndicator.
-   * @param apiKey The api key for the users service using rest.
-   * @param apiKeyName The header name of the api key.
-   * @param url The url of the users service.
-   * @param httpService: Service for http requests.
+   * Create a new instance of ApiKeyGuard.
+   * @param apiKey A valid api key.
    */
   constructor(
-    @Inject(InjectionName.USERS_SERVICE_REST_API_KEY) private apiKey: string,
-    @Inject(InjectionName.API_KEY_HEADER_NAME) private apiKeyName: string,
-    @Inject(InjectionName.USERS_SERVICE_REST_URL) private readonly url: string,
-    private readonly httpService: HttpService,
-  ) {
-    super();
-  }
+    @Inject(InjectionName.API_KEY) private readonly serviceApiKey: string,
+    @Inject(InjectionName.API_KEY_HEADER_NAME)
+    private readonly apiKeyHeaderName: string,
+  ) {}
 
   /**
-   * Execute a health check for the users service.
-   * @param key  The key which will be used as key for the result object.
-   * @returns A Promise&lt;T&gt; whose result is a HealthIndicatorResult.
+   * Validate the provided api key of the request.
+   * @param context The current execution context.
+   * @returns True if the api key is valid and false otherwise.
    */
-  async isHealthy(key: string): Promise&lt;HealthIndicatorResult&gt; {
+  canActivate(
+    context: ExecutionContext,
+  ): boolean | Promise&lt;boolean&gt; | Observable&lt;boolean&gt; {
     try {
-      const response &#x3D; this.httpService.get(this.url, {
-        headers: { [this.apiKeyName]: this.apiKey },
-      });
-      const { status, info, error, details } &#x3D; (await firstValueFrom(response))
-        .data;
-      return this.getStatus(key, status.toLowerCase() &#x3D;&#x3D;&#x3D; &#x27;ok&#x27;, {
-        info,
-        error,
-        details,
-      });
-    } catch (err) {
-      if (err?.response?.data) {
-        const { info, error, details } &#x3D; err.response.data;
-        const result &#x3D; this.getStatus(key, false, { info, error, details });
-        throw new HealthCheckError(&#x27;Custom health check failed&#x27;, result);
+      const request &#x3D; context.switchToHttp().getRequest();
+      const headers &#x3D; request?.headers;
+
+      if (!headers) {
+        return false;
       }
 
-      throw new HealthCheckError(
-        &#x27;Custom health check failed&#x27;,
-        this.getStatus(key, false, { error: err.message }),
-      );
+      const apiKey &#x3D; headers[this.apiKeyHeaderName];
+
+      return apiKey &#x3D;&#x3D;&#x3D; this.serviceApiKey;
+    } catch (err) {
+      return false;
     }
   }
 }
 </code></pre>
-    </div>
-
+        </div>
 </div>
-
-
 
 
 
@@ -405,8 +340,8 @@ export class UsersRestHealthIndicator extends HealthIndicator {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'UsersRestHealthIndicator.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'guard';
+            var COMPODOC_CURRENT_PAGE_URL = 'ApiKeyGuard.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title> (v27)</title>
+        <title> (v29)</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,7 +14,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand"> (v27)</a>
+            <a href="../" class="navbar-brand"> (v29)</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -134,8 +134,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="42"
-                            class="link-to-prism">src/health/health.controller.ts:42</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">src/health/health.controller.ts:50</a></div>
                 </td>
             </tr>
 
@@ -163,13 +163,20 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Inject, UseInterceptors } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  Controller,
+  Get,
+  Inject,
+  UseGuards,
+  UseInterceptors,
+} from &#x27;@nestjs/common&#x27;;
 import {
   HealthCheck,
   HealthCheckResult,
   HealthCheckService,
   HttpHealthIndicator,
 } from &#x27;@nestjs/terminus&#x27;;
+import { ApiKeyGuard } from &#x27;../guards/api-key.guard&#x27;;
 import { UsersGrpcHealthIndicator } from &#x27;../health-users-grpc/users-grpc-health-indicator&#x27;;
 import { UsersRestHealthIndicator } from &#x27;../health-users-rest/users-rest.health-indicator&#x27;;
 import { AccessControlAllowOriginInterceptor } from &#x27;../interceptors/access-control-allow-origin.interceptor&#x27;;
@@ -180,6 +187,7 @@ import InjectionName from &#x27;../types/injection-name.enum&#x27;;
  * Controller that provides a route for health checks.
  */
 @Controller()
+@UseGuards(ApiKeyGuard)
 @UseInterceptors(AccessControlAllowOriginInterceptor)
 export class HealthController {
   /**

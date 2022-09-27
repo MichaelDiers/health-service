@@ -15,7 +15,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
         <nav>
             <ul class="list">
                 <li class="title">
-                    <a href="index.html" data-type="index-link"> (v27)</a>
+                    <a href="index.html" data-type="index-link"> (v29)</a>
                 </li>
 
                 <li class="divider"></li>
@@ -57,6 +57,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/ConfigurationModule.html" data-type="entity-link" >ConfigurationModule</a>
                             </li>
                             <li class="link">
+                                <a href="modules/GuardsModule.html" data-type="entity-link" >GuardsModule</a>
+                            </li>
+                            <li class="link">
                                 <a href="modules/HealthModule.html" data-type="entity-link" >HealthModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
@@ -94,13 +97,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/HealthUsersRestModule.html" data-type="entity-link" >HealthUsersRestModule</a>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#injectables-links-module-HealthUsersRestModule-28ec45c0e946fd9203e4854bbf133f55ac5ad74cecb326fe3ee490691aebb042d342d80c32d963b5c61da38f47fc9be408f1624a3f66b32f584bab403715ac82"' : 'data-target="#xs-injectables-links-module-HealthUsersRestModule-28ec45c0e946fd9203e4854bbf133f55ac5ad74cecb326fe3ee490691aebb042d342d80c32d963b5c61da38f47fc9be408f1624a3f66b32f584bab403715ac82"' }>
+                                        'data-target="#injectables-links-module-HealthUsersRestModule-a05b3779958a431037f06671c30f882e8caff2f51b90e1a8e255b4edf9cbd6f268a43a664deeda6dac7866a1dbc52cf13193a3dd6546b2dc398068741dba3c42"' : 'data-target="#xs-injectables-links-module-HealthUsersRestModule-a05b3779958a431037f06671c30f882e8caff2f51b90e1a8e255b4edf9cbd6f268a43a664deeda6dac7866a1dbc52cf13193a3dd6546b2dc398068741dba3c42"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-HealthUsersRestModule-28ec45c0e946fd9203e4854bbf133f55ac5ad74cecb326fe3ee490691aebb042d342d80c32d963b5c61da38f47fc9be408f1624a3f66b32f584bab403715ac82"' :
-                                        'id="xs-injectables-links-module-HealthUsersRestModule-28ec45c0e946fd9203e4854bbf133f55ac5ad74cecb326fe3ee490691aebb042d342d80c32d963b5c61da38f47fc9be408f1624a3f66b32f584bab403715ac82"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-HealthUsersRestModule-a05b3779958a431037f06671c30f882e8caff2f51b90e1a8e255b4edf9cbd6f268a43a664deeda6dac7866a1dbc52cf13193a3dd6546b2dc398068741dba3c42"' :
+                                        'id="xs-injectables-links-module-HealthUsersRestModule-a05b3779958a431037f06671c30f882e8caff2f51b90e1a8e255b4edf9cbd6f268a43a664deeda6dac7866a1dbc52cf13193a3dd6546b2dc398068741dba3c42"' }>
                                         <li class="link">
                                             <a href="injectables/UsersRestHealthIndicator.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >UsersRestHealthIndicator</a>
                                         </li>
@@ -122,6 +125,19 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 </li>
                             </ul>
                         </li>
+                    <li class="chapter">
+                        <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ? 'data-target="#guards-links"' :
+                            'data-target="#xs-guards-links"' }>
+                            <span class="icon ion-ios-lock"></span>
+                            <span>Guards</span>
+                            <span class="icon ion-ios-arrow-down"></span>
+                        </div>
+                        <ul class="links collapse " ${ isNormalMode ? 'id="guards-links"' : 'id="xs-guards-links"' }>
+                            <li class="link">
+                                <a href="guards/ApiKeyGuard.html" data-type="entity-link" >ApiKeyGuard</a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="chapter">
                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ? 'data-target="#interfaces-links"' :
                             'data-target="#xs-interfaces-links"' }>
