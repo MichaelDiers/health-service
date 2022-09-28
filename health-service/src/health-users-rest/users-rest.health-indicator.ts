@@ -41,12 +41,21 @@ export class UsersRestHealthIndicator extends HealthIndicator {
       });
       const { status, info, error, details } = (await firstValueFrom(response))
         .data;
-      return this.getStatus(key, status?.toLowerCase() === 'ok', {
+      const result = this.getStatus(key, status?.toLowerCase() === 'ok', {
         info,
         error,
         details,
       });
+      if (status?.toLowerCase() === 'ok') {
+        return result;
+      }
+
+      throw new HealthCheckError('Custom health check failed', status);
     } catch (err) {
+      if ((err as HealthCheckError).causes) {
+        throw new HealthCheckError(err.message, err.causes);
+      }
+
       if (err?.response?.data) {
         const { info, error, details } = err.response.data;
         const result = this.getStatus(key, false, { info, error, details });
