@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title> (v33)</title>
+        <title> (v34)</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,7 +14,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand"> (v33)</a>
+            <a href="../" class="navbar-brand"> (v34)</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -339,7 +339,7 @@ export class UsersRestHealthIndicator extends HealthIndicator {
    */
   async isHealthy(key: string): Promise&lt;HealthIndicatorResult&gt; {
     try {
-      const response &#x3D; this.httpService.get(this.url, {
+      const response &#x3D; await this.httpService.get(this.url, {
         headers: { [this.apiKeyName]: this.apiKey },
       });
       const { status, info, error, details } &#x3D; (await firstValueFrom(response))
