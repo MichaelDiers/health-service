@@ -36,7 +36,7 @@ export class UsersRestHealthIndicator extends HealthIndicator {
    */
   async isHealthy(key: string): Promise<HealthIndicatorResult> {
     try {
-      const response = this.httpService.get(this.url, {
+      const response = await this.httpService.get(this.url, {
         headers: { [this.apiKeyName]: this.apiKey },
       });
       const { status, info, error, details } = (await firstValueFrom(response))
