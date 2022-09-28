@@ -41,7 +41,7 @@ export class UsersRestHealthIndicator extends HealthIndicator {
       });
       const { status, info, error, details } = (await firstValueFrom(response))
         .data;
-      return this.getStatus(key, status.toLowerCase() === 'ok', {
+      return this.getStatus(key, status?.toLowerCase() === 'ok', {
         info,
         error,
         details,
