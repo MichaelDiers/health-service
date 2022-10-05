@@ -4,6 +4,7 @@ import { HealthModule } from './health/health.module';
 import { HealthUsersGrpcModule } from './health-users-grpc/health-users-grpc.module';
 import { HealthUsersRestModule } from './health-users-rest/health-users-rest.module';
 import { GuardsModule } from './guards/guards.module';
+import { HealthAuthenticationModule } from './health-authentication/health-authentication.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { GuardsModule } from './guards/guards.module';
     HealthUsersGrpcModule,
     HealthUsersRestModule,
     GuardsModule,
+    HealthAuthenticationModule,
   ],
 })
 export class AppModule {}

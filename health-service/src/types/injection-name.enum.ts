@@ -18,6 +18,16 @@ const enum InjectionName {
   API_KEY_HEADER_NAME = 'API_KEY_HEADER_NAME',
 
   /**
+   * The address of the authentication service.
+   */
+  AUTHENTICATION_SERVICE = 'AUTHENTICATION_SERVICE',
+
+  /**
+   * The api key for the authentication service.
+   */
+  AUTHENTICATION_SERVICE_API_KEY = 'AUTHENTICATION_SERVICE_API_KEY',
+
+  /**
    * The injection name for http checks.
    */
   HTTP_CHECKS = 'HTTP_CHECKS',

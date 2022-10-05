@@ -3,6 +3,7 @@ import { TerminusModule } from '@nestjs/terminus';
 import { Test, TestingModule } from '@nestjs/testing';
 import { ConfigurationModule } from '../configuration/configuration.module';
 import { GuardsModule } from '../guards/guards.module';
+import { HealthAuthenticationModule } from '../health-authentication/health-authentication.module';
 import { HealthUsersGrpcModule } from '../health-users-grpc/health-users-grpc.module';
 import { HealthUsersRestModule } from '../health-users-rest/health-users-rest.module';
 import { HealthController } from './health.controller';
@@ -20,6 +21,7 @@ describe('HealthController', () => {
         TerminusModule,
         HealthUsersGrpcModule,
         HealthUsersRestModule,
+        HealthAuthenticationModule,
       ],
     }).compile();
 

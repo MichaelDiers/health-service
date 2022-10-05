@@ -12,6 +12,7 @@ import {
   HttpHealthIndicator,
 } from '@nestjs/terminus';
 import { ApiKeyGuard } from '../guards/api-key.guard';
+import { AuthenticationHealthIndicator } from '../health-authentication/authentication.health-indicator';
 import { UsersGrpcHealthIndicator } from '../health-users-grpc/users-grpc-health-indicator';
 import { UsersRestHealthIndicator } from '../health-users-rest/users-rest.health-indicator';
 import { AccessControlAllowOriginInterceptor } from '../interceptors/access-control-allow-origin.interceptor';
@@ -31,6 +32,7 @@ export class HealthController {
    * @param httpHealthIndicator Check the health of http services.
    * @param httpChecks A array of http addresses to be checked.
    * @param healthUsersGrpc A custom health check for grpc users service.
+   * @param healthAuthentication A custom health check for authentication service.
    */
   constructor(
     private readonly healthCheckService: HealthCheckService,
@@ -39,6 +41,7 @@ export class HealthController {
     private readonly httpChecks: IHttpCheck[],
     private readonly healthUsersGrpc: UsersGrpcHealthIndicator,
     private readonly healthUsersRest: UsersRestHealthIndicator,
+    private readonly healthAuthentication: AuthenticationHealthIndicator,
   ) {}
 
   /**
@@ -51,6 +54,7 @@ export class HealthController {
     return this.healthCheckService.check([
       () => this.healthUsersRest.isHealthy('Users Service REST'),
       () => this.healthUsersGrpc.isHealthy('Users Service Grpc'),
+      () => this.healthAuthentication.isHealthy('Authentication Service'),
       ...this.httpChecks.map(
         ({ link, name }) =>
           async () =>

@@ -27,6 +27,8 @@ jobs:
       SOURCE: ${{ secrets.SOURCE }}
       HEALTH_SERVICE_USERS_SERVICE_REST_URL: ${{ secrets.HEALTH_SERVICE_USERS_SERVICE_REST_URL }}
       HEALTH_SERVICE_USERS_SERVICE_REST_API_KEY: ${{ secrets.HEALTH_SERVICE_USERS_SERVICE_REST_API_KEY }}
+      HEALTH_SERVICE_AUTHENTICATION_SERVICE: ${{ secrets.HEALTH_SERVICE_AUTHENTICATION_SERVICE }}
+      HEALTH_SERVICE_AUTHENTICATION_SERVICE_API_KEY: ${{ secrets.HEALTH_SERVICE_AUTHENTICATION_SERVICE_API_KEY }}
     steps:
       - uses: actions/checkout@v3
       - name: update Dockerfile
@@ -40,6 +42,8 @@ jobs:
           echo "ENV HEALTH_SERVICE_USERS_GRPC_SERVICE_URL=${{ env.HEALTH_SERVICE_USERS_GRPC_SERVICE_URL }}" >> ${{ env.SOURCE }}/Dockerfile
           echo "ENV HEALTH_SERVICE_USERS_SERVICE_REST_URL=${{ env.HEALTH_SERVICE_USERS_SERVICE_REST_URL }}" >> ${{ env.SOURCE }}/Dockerfile
           echo "ENV HEALTH_SERVICE_USERS_SERVICE_REST_API_KEY=${{ env.HEALTH_SERVICE_USERS_SERVICE_REST_API_KEY }}" >> ${{ env.SOURCE }}/Dockerfile
+          echo "ENV HEALTH_SERVICE_AUTHENTICATION_SERVICE=${{ env.HEALTH_SERVICE_AUTHENTICATION_SERVICE }}" >> ${{ env.SOURCE }}/Dockerfile
+          echo "ENV HEALTH_SERVICE_AUTHENTICATION_SERVICE_API_KEY=${{ env.HEALTH_SERVICE_AUTHENTICATION_SERVICE_API_KEY }}" >> ${{ env.SOURCE }}/Dockerfile
           echo "EXPOSE ${{ env.HEALTH_SERVICE_PORT }}" >> ${{ env.SOURCE }}/Dockerfile      
           echo "CMD [\"node\", \"dist/main\"]" >> ${{ env.SOURCE }}/Dockerfile
       - id: 'auth'

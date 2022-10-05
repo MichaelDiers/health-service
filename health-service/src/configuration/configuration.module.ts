@@ -14,6 +14,8 @@ const ENV_PREFIX = 'HEALTH_SERVICE_';
     InjectionName.ACCESS_CONTROL_ALLOW_ORIGIN,
     InjectionName.API_KEY,
     InjectionName.API_KEY_HEADER_NAME,
+    InjectionName.AUTHENTICATION_SERVICE,
+    InjectionName.AUTHENTICATION_SERVICE_API_KEY,
     InjectionName.HTTP_CHECKS,
     InjectionName.PORT,
     InjectionName.USERS_GRPC_SERVICE_URL,
@@ -43,6 +45,22 @@ const ENV_PREFIX = 'HEALTH_SERVICE_';
       provide: InjectionName.API_KEY,
       useFactory: (configService: ConfigService): string =>
         configService.getOrThrow(`${ENV_PREFIX}${InjectionName.API_KEY}`),
+      inject: [ConfigService],
+    },
+    {
+      provide: InjectionName.AUTHENTICATION_SERVICE,
+      useFactory: (configService: ConfigService): string =>
+        configService.getOrThrow(
+          `${ENV_PREFIX}${InjectionName.AUTHENTICATION_SERVICE}`,
+        ),
+      inject: [ConfigService],
+    },
+    {
+      provide: InjectionName.AUTHENTICATION_SERVICE_API_KEY,
+      useFactory: (configService: ConfigService): string =>
+        configService.getOrThrow(
+          `${ENV_PREFIX}${InjectionName.AUTHENTICATION_SERVICE_API_KEY}`,
+        ),
       inject: [ConfigService],
     },
     {
